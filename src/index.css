@@ -3,3 +3,20 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.user-login {
+  margin: 10px;
+  text-align: right;
+}
+
+.avatar {
+  height: 50px;
+  border-radius: 25px;
+  /* margin: 10px; */
+}
+
+.LeaderboardCard h3 {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 auto;
+}

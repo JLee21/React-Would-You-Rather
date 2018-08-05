@@ -6,12 +6,16 @@ import PropTypes from 'prop-types';
 // import CenteredGrid from './Grid'
 // import GuttersGrid from './Spacing'
 // import GridBreakPoints from './GridBreakPoints'
+import { handleInitialData } from '../actions/shared';
 import Divider from '@material-ui/core/Divider';
-import CenteredTabs from './Tab'
-import NewQuestion from './NewQuestion'
-import Dashboard from './Dashboard'
-import Login from './Login'
-import { handleInitialData } from '../actions/shared'
+import CenteredTabs from './Tab';
+import NewQuestion from './NewQuestion';
+import Dashboard from './Dashboard';
+import Leaderboard from './Leaderboard';
+import Login from './Login';
+
+// Somewhere here I will need to check if the Store has the authed user.
+// If not, then redirect to the login page.
 
 class App extends Component {
 
@@ -27,6 +31,7 @@ class App extends Component {
           <Route path='/' exact component={Dashboard} />
           <Route path='/new' component={NewQuestion} />
           <Route path='/login' component={Login} />
+          <Route path='/leaderboard' component={Leaderboard} />
         </div>
       </Router>
     );
