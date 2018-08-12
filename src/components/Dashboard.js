@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import QuestionContainer from './QuestionContainer'
+
 /*
 Once the user logs in, the user should be able to toggle between
 his/her answered and unanswered polls on the home page, which is
@@ -23,22 +25,13 @@ class Dashboard extends Component {
     this.handleAnsweredToggle = this.handleAnsweredToggle.bind(this)
   }
 
-  getUnansweredQuestions () {
-    // Get all question IDs that are not in answeres.
+  getAnswered () {
     const { users, authedUser } = this.props;
-    const answered = this.getAnsweredQuestion()
-    if ( users && authedUser && answered ) {
-      const questions = users[authedUser].questions;
-      return questions.filter(value => -1 == answered.indexOf(value));
-    }
-  }
 
-  getAnsweredQuestion (questions) {
-    const { users, authedUser } = this.props;
-      if ( users && authedUser ) {
-
-        // Only get the keys which are just the question IDs.
-        return Object.keys(users[authedUser].answers)
+    if ( users && authedUser) {
+      return Object.keys(users[authedUser].answers)
+    } else {
+      return []
     }
   }
 
@@ -49,8 +42,9 @@ class Dashboard extends Component {
   }
 
   render () {
-    const { authedUser } = this.props;
+    const { authedUser, questions } = this.props;
     const { showAnswered } = this.state;
+
     return (
       <div>
         <p>{authedUser}</p>
@@ -61,17 +55,24 @@ class Dashboard extends Component {
           <h1>Unanswered</h1>
         </button>
         {showAnswered
-          ? <p>Answered: {this.getAnsweredQuestion()}</p>
-          : <p>Unanswered: {this.getUnansweredQuestions()}</p>
+          ? <div>
+              <p>Answered</p>
+              <QuestionContainer questions={this.getAnswered()}/>
+            </div>
+          : <div>
+              <p>Unanswered</p>
+              <QuestionContainer questions={questions}/>
+            </div>
         }
       </div>
     )
   }
 }
 
-function mapStateToProps ({ qustions, users, authedUser }) {
+function mapStateToProps ({ questions, users, authedUser }) {
+
   return {
-    qustions,
+    questions: Object.keys(questions),
     users,
     authedUser
   }

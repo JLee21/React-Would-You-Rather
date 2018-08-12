@@ -24,13 +24,11 @@ class Login extends Component {
     this.state = {
       userSelect
     }
-    console.log('state', userSelect);
     this.props.dispatch(setAuthedUser(userSelect))
   }
   render () {
     const { users, authedUser, setAuthedUser } = this.props;
     const { userSelect } = this.state;
-    console.log('render: userSelect', this.state.userSelect);
 
     return (
       <div>
@@ -59,11 +57,5 @@ function mapStateToProps ({ users, authedUser }) {
   In this component, we need to get all users from the store's "state" and
   we need to modify the store so we'll need a dispatch action.
   So we'll need to both options
-
-  {Object.keys(users).forEach(user => {
-    <option value={user}>asdf</option>
-  })}
-
-
  */
 export default connect(mapStateToProps)(Login)

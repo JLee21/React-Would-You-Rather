@@ -18,8 +18,8 @@ class NewQuestion extends Component {
 
   state = {
     toHome: false,
-    optionOneText: '',
-    optionTwoText: ''
+    optionOneText: 'asadf',
+    optionTwoText: 'qwer'
   }
   clearUserInput = () => {
     this.setState(() => {
@@ -31,14 +31,14 @@ class NewQuestion extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
 
-    const { dispatch } = this.props;
+    const { dispatch, authedUser } = this.props;
     const { optionOneText, optionTwoText } = this.state;
 
     // // Question object schema comes from _DATA.js formatQuestion
     const question = {
       optionOneText,
       optionTwoText,
-      author: AUTHOR
+      author: authedUser
     }
     this.clearUserInput()
     this.state = {
@@ -95,4 +95,10 @@ class NewQuestion extends Component {
   }
 }
 
-export default connect()(NewQuestion)
+function mapStateToProps ({ authedUser }) {
+  return {
+    authedUser,
+  }
+}
+
+export default connect(mapStateToProps)(NewQuestion)

@@ -8,7 +8,7 @@ export const STORE_QUESTIONS = 'STORE_QUESTIONS'
 function addQuestion (question) {
   return {
     type: SAVE_QUESTION,
-    question,
+    question
   }
 }
 export function handleAddQuestion (question) {
@@ -27,7 +27,9 @@ export function handleAddQuestion (question) {
     return saveQuestion(
       question
     )
-      .then((question) => dispatch(addQuestion(question)))
+      .then((question) => {
+        dispatch(addQuestion(question))
+      })
   }
 }
 export function storeQuestions (questions) {

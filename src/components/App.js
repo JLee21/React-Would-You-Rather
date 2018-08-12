@@ -13,6 +13,7 @@ import NewQuestion from './NewQuestion';
 import Dashboard from './Dashboard';
 import Leaderboard from './Leaderboard';
 import Login from './Login';
+import QuestionContainer from './QuestionContainer'
 
 // Somewhere here I will need to check if the Store has the authed user.
 // If not, then redirect to the login page.
@@ -29,6 +30,7 @@ class App extends Component {
         <div>
           <CenteredTabs />
           <Route path='/' exact component={Dashboard} />
+          <Route path='/question/:id' component={QuestionContainer} />
           <Route path='/new' component={NewQuestion} />
           <Route path='/login' component={Login} />
           <Route path='/leaderboard' component={Leaderboard} />

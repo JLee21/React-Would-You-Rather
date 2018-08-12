@@ -9,12 +9,26 @@ import {
  */
 export default function questions (state = {}, action) {
   switch (action.type) {
+
+    /*
+      Add the question object to questions.
+      And push the question ID onto that user's question array.
+     */
     case SAVE_QUESTION :
-      const { question } = action;
+      const { question, users } = action;
       return {
         ...state,
-        [question.id]: question
+        [question.id]: question,
+        [question.author]: {
+          ...state[question.author],
+          questions: 'Meow'
+        }
+
       }
+
+    /*
+
+     */
     case STORE_QUESTIONS :
       return {
         ...state,
