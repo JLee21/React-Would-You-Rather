@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import { handleInitialData } from '../actions/shared';
 import { handleSaveAnswer } from '../actions/questions'
 
@@ -24,48 +24,65 @@ The option selected by the logged-in user should be clearly marked.
  */
 
 class QCPoll extends Component {
-  constructor() {
-    super();
+  // constructor() {
+  //   super();
+  //
+  //   this.state = {
+  //     option: '',
+  //     toHome: false
+  //   };
+  //   this.handleChange = this.handleChange.bind(this)
+  // }
 
-    this.state = {
-      option: ''
-    };
-    this.handleChange = this.handleChange.bind(this)
-  }
+  state = {
+    option: '',
+    toHome: false
+  };
+
+  // When using ES6 code in React always use arrow functions,
+  // because the "this" context is automatically binded with it
 
   componentDidMount () {
     this.props.dispatch(handleInitialData())
   }
-  handleChange(e) {
+
+  handleChange = (e) => {
     const option = e.target.value
     this.setState(() => ({
       option
     }))
-    console.log(this.state);
+    console.log('state:', this.state);
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const { user, question } = this.props;
 
-    console.log('answer', this.state.option);
-    console.log('user', user.id);
-    console.log('question', question.id);
+    const { user, question } = this.props;
 
     const answer = {
       authedUser: user.id,
       qid: question.id,
       answer: this.state.option
     }
-
     this.props.dispatch(handleSaveAnswer(answer))
+
+    this.setState(() => {
+      toHome: true
+    })
+
+    console.log('submit:', this.state.toHome);
+    // return false;
+
   }
 
   render () {
     const { users, question, user } = this.props;
-    console.log('users', users);
-    console.log('question', question);
-    console.log('user', user);
+    const { toHome } = this.state;
+    console.log('render toHome:', this.state.toHome);
+
+    if (toHome === true) {
+      return <Redirect to='/' />
+    }
 
     if ( users && question && user ) {
       return (
@@ -114,11 +131,12 @@ function mapStateToProps ({ users, authedUser, questions }, props) {
   const { id } = props.match.params;
 
   const question = questions[id];
+  const user = users[authedUser];
 
   return {
     users,
     question,
-    user: users[authedUser]
+    user
   }
 }
 

@@ -17,12 +17,8 @@ Pass these lists to QuestionCol component.
 */
 
 class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showAnswered: false,
-    }
-    this.handleAnsweredToggle = this.handleAnsweredToggle.bind(this)
+  state = {
+    showAnswered: false,
   }
 
   getAnswered () {
@@ -35,7 +31,18 @@ class Dashboard extends Component {
     }
   }
 
-  handleAnsweredToggle () {
+  getUnanswered = () => {
+    const answered = this.getAnswered();
+    const questions = this.props;
+
+    // Deselect all questions that are in "answered".
+    const unanswered = Object.keys(questions).map((id) => {
+
+    })
+
+  }
+
+  handleAnsweredToggle = () => {
     this.setState((prevState) => ({
       showAnswered: !prevState.showAnswered
     }))

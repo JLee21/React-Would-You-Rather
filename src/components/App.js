@@ -32,7 +32,7 @@ class App extends Component {
           <CenteredTabs />
           <Route path='/' exact component={Dashboard} />
           <Route path='/questions/:id' component={QCPoll} />
-          <Route path='/new' component={NewQuestion} />
+          <Route path='/add' component={NewQuestion} />
           <Route path='/login' component={Login} />
           <Route path='/leaderboard' component={Leaderboard} />
         </div>

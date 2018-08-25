@@ -31,7 +31,7 @@ class CenteredTabs extends React.Component {
       <div className=''>
         <nav className=''>
           <NavLink to='/' exact>Home</NavLink>
-          <NavLink to='/new' activeClassName='active'>New Question</NavLink>
+          <NavLink to='/add' activeClassName='active'>New Question</NavLink>
           <NavLink to='/leaderboard' activeClassName='active'>Leader Board</NavLink>
           <NavLink to='/login' activeClassName='active'>
             <div className='user-login'>
