@@ -19,9 +19,20 @@ export function getInitialData () {
       })
     )
 }
+
 export function saveQuestion (question) {
   return _saveQuestion(question)
 }
+
+export function saveAnswer (answer) {
+  /*
+    authedUser,
+    qid,
+    answer: "optionOne" or "optionTwo"
+   */
+  return _saveQuestionAnswer(answer)
+}
+
 export function getQuestions () {
   return _getQuestions()
 }

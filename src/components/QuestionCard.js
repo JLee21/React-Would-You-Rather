@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
+import { handleInitialData } from '../actions/shared';
 
 /*
 What would be the point of seeing answered and unanswered polling
@@ -23,6 +24,9 @@ The option selected by the logged-in user should be clearly marked.
 
 class QuestionCard extends Component {
 
+  componentDidMount () {
+    this.props.dispatch(handleInitialData())
+  }
 
   render () {
     const { users, question, user } = this.props;
@@ -38,7 +42,7 @@ class QuestionCard extends Component {
         <p>Would you rather {question.optionOne.text.split(' ').slice(0, 5).join(' ')}...</p>
         <Link to={`/questions/${question.id}`}>
           <button>
-            Vote!
+            View Poll!
           </button>
         </Link>
       </div>

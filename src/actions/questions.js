@@ -1,14 +1,32 @@
 import {
-  saveQuestion
+  saveQuestion,
+  saveAnswer
 } from '../utils/api'
 
 export const SAVE_QUESTION = 'SAVE_QUESTION'
 export const STORE_QUESTIONS = 'STORE_QUESTIONS'
+export const SAVE_ANSWER = 'SAVE_ANSWER'
 
 function addQuestion (question) {
   return {
     type: SAVE_QUESTION,
     question
+  }
+}
+function addAnswer (answer) {
+  return {
+    type: SAVE_ANSWER,
+    answer
+  }
+}
+export function handleSaveAnswer (answer) {
+  return (dispatch, getState) => {
+    return saveAnswer(
+      answer
+    )
+      .then((answer) => {
+        dispatch(addAnswer(answer))
+      })
   }
 }
 export function handleAddQuestion (question) {

@@ -31,14 +31,12 @@ class QuestionContainer extends Component {
 }
 
 function mapStateToProps ({ }, props) {
-
-  // const { id } = props.match.params
-  console.log('props:', props);
-  const id = ''
+  const { id } = props.match.params
+  
   return {
     id,
     questions: props.questions
   }
 }
 
-export default connect(mapStateToProps)(QuestionContainer)
+export default withRouter(connect(mapStateToProps)(QuestionContainer))

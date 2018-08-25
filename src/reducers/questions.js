@@ -1,6 +1,7 @@
 import {
   SAVE_QUESTION,
-  STORE_QUESTIONS
+  STORE_QUESTIONS,
+  SAVE_ANSWER
 } from '../actions/questions'
 
 /*
@@ -23,7 +24,20 @@ export default function questions (state = {}, action) {
           ...state[question.author],
           questions: 'Meow'
         }
-
+      }
+    case SAVE_ANSWER :
+      console.log('saveAnswer action', action);
+      const { authedUser, qid, answer } = action.answer;
+      console.log('saveAnswer', state[qid]);
+      return {
+        ...state,
+        [qid]: {
+          ...state[qid],
+          [answer]: {
+            ...state[qid][answer],
+            votes: state[qid][answer].votes.concat(authedUser)
+          }
+        }
       }
 
     /*
