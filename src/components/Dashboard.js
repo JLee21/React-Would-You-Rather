@@ -21,29 +21,6 @@ class Dashboard extends Component {
     showAnswered: false,
   }
 
-  getAnswered () {
-    const { users, authedUser } = this.props;
-
-    if ( users && authedUser) {
-      return Object.keys(users[authedUser].answers)
-    } else {
-      return []
-    }
-  }
-
-  getUnanswered = () => {
-    const answered = this.getAnswered();
-    const { users, authedUser } = this.props;
-
-    // Deselect all questions that are in "answered".
-    if (users, authedUser) {
-      const questions = users[authedUser].questions
-      return questions.filter((id) => -1 == answered.indexOf(id))
-    } else {
-      return []
-    }
-  }
-
   handleAnsweredToggle = (e) => {
     e.preventDefault()
     console.log(e.target.value);
@@ -53,7 +30,7 @@ class Dashboard extends Component {
   }
 
   render () {
-    const { authedUser, questions } = this.props;
+    const { authedUser, answeredSorted, unansweredSorted } = this.props;
     const { showAnswered } = this.state;
 
     return (
@@ -68,11 +45,11 @@ class Dashboard extends Component {
         {showAnswered
           ? <div>
               <p>Answered</p>
-              <QuestionContainer questions={this.getAnswered()}/>
+              <QuestionContainer questions={answeredSorted}/>
             </div>
           : <div>
               <p>Unanswered</p>
-              <QuestionContainer questions={this.getUnanswered()}/>
+              <QuestionContainer questions={unansweredSorted}/>
             </div>
         }
       </div>
@@ -82,8 +59,17 @@ class Dashboard extends Component {
 
 function mapStateToProps ({ questions, users, authedUser }) {
 
+  const answered = Object.keys(users[authedUser].answers)
+  const answeredSorted = answered.sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+
+  const asked = users[authedUser].questions
+  const unanswered = asked.filter((id) => -1 == answered.indexOf(id))
+  const unansweredSorted = unanswered.sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+
   return {
     questions: Object.keys(questions),
+    answeredSorted,
+    unansweredSorted,
     users,
     authedUser
   }
