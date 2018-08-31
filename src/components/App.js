@@ -16,8 +16,6 @@ import Login from './Login';
 import QuestionContainer from './QuestionContainer'
 import QCPoll from './QCPoll'
 
-// Somewhere here I will need to check if the Store has the authed user.
-// If not, then redirect to the login page.
 
 class App extends Component {
 
@@ -26,16 +24,23 @@ class App extends Component {
   }
 
   render() {
+    const { authedUser } = this.props;
+
     return (
       <Router>
-        <div>
-          <CenteredTabs />
-          <Route path='/' exact component={Dashboard} />
-          <Route path='/questions/:id' component={QCPoll} />
-          <Route path='/add' component={NewQuestion} />
-          <Route path='/login' component={Login} />
-          <Route path='/leaderboard' component={Leaderboard} />
-        </div>
+        {authedUser == null
+          ? <div>
+              <Login />
+            </div>
+          : <div>
+              <CenteredTabs />
+              <Route path='/' exact component={Dashboard} />
+              <Route path='/questions/:id' component={QCPoll} />
+              <Route path='/add' component={NewQuestion} />
+              <Route path='/login' component={Login} />
+              <Route path='/leaderboard' component={Leaderboard} />
+            </div>
+        }
       </Router>
     );
   }
@@ -48,4 +53,12 @@ class App extends Component {
 //
 // Using the connect() function upgrades a component to a container.
 // Containers can read state from the store and dispatch actions.
-export default connect()(App)
+
+function mapStateToProps ({ authedUser }) {
+
+  return {
+    authedUser
+  }
+}
+
+export default connect(mapStateToProps)(App)
