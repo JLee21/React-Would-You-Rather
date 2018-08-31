@@ -33,16 +33,20 @@ class Dashboard extends Component {
 
   getUnanswered = () => {
     const answered = this.getAnswered();
-    const questions = this.props;
+    const { users, authedUser } = this.props;
 
     // Deselect all questions that are in "answered".
-    const unanswered = Object.keys(questions).map((id) => {
-
-    })
-
+    if (users, authedUser) {
+      const questions = users[authedUser].questions
+      return questions.filter((id) => -1 == answered.indexOf(id))
+    } else {
+      return []
+    }
   }
 
-  handleAnsweredToggle = () => {
+  handleAnsweredToggle = (e) => {
+    e.preventDefault()
+    console.log(e.target.value);
     this.setState((prevState) => ({
       showAnswered: !prevState.showAnswered
     }))
@@ -68,7 +72,7 @@ class Dashboard extends Component {
             </div>
           : <div>
               <p>Unanswered</p>
-              <QuestionContainer questions={questions}/>
+              <QuestionContainer questions={this.getUnanswered()}/>
             </div>
         }
       </div>

@@ -11,8 +11,8 @@ import { setAuthedUser } from '../actions/authedUser'
     Now, dispatch the resolved data from the API using dispatch()
  */
 
-const AUTHED_ID = 'sarahedo'
-  
+const AUTHED_ID = 'tylermcginnis'
+
 export function handleInitialData () {
   return (dispatch) => {
     return getInitialData()
