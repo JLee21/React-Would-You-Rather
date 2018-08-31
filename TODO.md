@@ -1,12 +1,8 @@
 * the dropdown select is not refreshing to what the user selects. store updates ok though.
 
-* cannot seem to access the name from getUserNameFromID in Tab file.
-
 * Add redirect after user votes on poll.
   Does not seem to want to redirect back. Something with e.preventDefault().
   Although NewTweet seems to work just fine.
-
-* Arrange questions on Dashboard so most recent are on top.
 
 * Add 404 redirect page
 
