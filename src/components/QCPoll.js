@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Redirect } from 'react-router-dom'
-import { handleInitialData } from '../actions/shared';
+import { handleInitialData } from '../actions/shared'
 import { handleSaveAnswer } from '../actions/questions'
+import QuestionSubmitted from './QuestionSubmitted'
 
 /*
 What would be the point of seeing answered and unanswered polling
@@ -24,16 +25,6 @@ The option selected by the logged-in user should be clearly marked.
  */
 
 class QCPoll extends Component {
-  // constructor() {
-  //   super();
-  //
-  //   this.state = {
-  //     option: '',
-  //     toHome: false
-  //   };
-  //   this.handleChange = this.handleChange.bind(this)
-  // }
-
   state = {
     option: '',
     toHome: false
@@ -51,7 +42,6 @@ class QCPoll extends Component {
     this.setState(() => ({
       option
     }))
-    console.log('state:', this.state);
   }
 
   handleSubmit = (e) => {
@@ -69,14 +59,10 @@ class QCPoll extends Component {
     this.setState(() => {
       toHome: true
     })
-
-    console.log('submit:', this.state.toHome);
-    // return false;
-
   }
 
   render () {
-    const { users, question, user } = this.props;
+    const { users, question, user, isAnswered } = this.props;
     const { toHome } = this.state;
     console.log('render toHome:', this.state.toHome);
 
@@ -85,6 +71,12 @@ class QCPoll extends Component {
     }
 
     if ( users && question && user ) {
+      if (isAnswered != -1) {
+        return (
+          <QuestionSubmitted id={question.id}/>
+        )
+      }
+
       return (
         <div>
           <img
@@ -126,17 +118,24 @@ class QCPoll extends Component {
   }
 }
 
+function checkIfAnswered (users, authedUser, id) {
+  // Note: returns -1 if there is no match.
+  return Object.keys(users[authedUser].answers).indexOf(id);
+}
+
 function mapStateToProps ({ users, authedUser, questions }, props) {
 
   const { id } = props.match.params;
-
   const question = questions[id];
   const user = users[authedUser];
+
+  const isAnswered = checkIfAnswered(users, authedUser, id);
 
   return {
     users,
     question,
-    user
+    user,
+    isAnswered
   }
 }
 

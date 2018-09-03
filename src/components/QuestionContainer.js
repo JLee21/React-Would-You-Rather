@@ -5,11 +5,8 @@ import { Link, withRouter } from 'react-router-dom';
 import QuestionCard from './QuestionCard';
 
 /*
-  This component is responsible for receiving a single question ID
-  or a list of Question IDs,
-  This ID is passed down to the QuestionCard.
-  Peform logic that checks if the currently signed-in user has asked the
-  very question that is passed in.
+  This component is responsible for receiving a list of Question IDs,
+  This ID is passed down to the QuestionCard (which is mostly presentational).
  */
 
 class QuestionContainer extends Component {
@@ -19,8 +16,6 @@ class QuestionContainer extends Component {
 
     return (
       <div>
-
-
         { // Display multiple unanswered questions
           questions && questions.map(id => {
           return (
@@ -30,10 +25,6 @@ class QuestionContainer extends Component {
       </div>
     )
   }
-}
-
-function checkIfAnswered () {
-  return
 }
 
 function mapStateToProps ({ }, props) {

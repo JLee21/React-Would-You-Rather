@@ -9,13 +9,15 @@ questions if we couldn’t actually vote or see the results?
 Each polling question should link to the details of that poll.
 The details of each poll should be available at questions/:question_id.
 
-When a poll is clicked on the home page, the following is shown:
+When a poll is clicked on the home page, one of the two following is shown:
 
+O N E
 Text “Would You Rather”;
 Avatar of the user who posted the polling question; and
 Two options.
-For answered polls, each of the two options contains the following:
 
+T W O
+For answered polls, each of the two options contains the following:
 Text of the option;
 Number of people who voted for that option; and
 Percentage of people who voted for that option.
@@ -48,16 +50,16 @@ class QuestionCard extends Component {
       </div>
     )
   }
-
 }
 
 function mapStateToProps ({ users, authedUser, questions }, { id }) {
   const question = questions[id];
+  const user = users[authedUser]
 
   return {
     users,
     question,
-    user: users[authedUser]
+    user
   }
 }
 
