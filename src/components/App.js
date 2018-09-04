@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
@@ -35,12 +35,14 @@ class App extends Component {
             </div>
           : <div>
               <CenteredTabs />
-              <Route path='/' exact component={Dashboard} />
-              <Route path='/questions/:id' component={QCPoll} />
-              <Route path='/add' component={NewQuestion} />
-              <Route path='/login' component={Login} />
-              <Route path='/leaderboard' component={Leaderboard} />
-              <Route component={NoMatch} />
+              <Switch>
+                <Route path='/' exact component={Dashboard} />
+                <Route path='/questions/:id' component={QCPoll} />
+                <Route path='/add' component={NewQuestion} />
+                <Route path='/login' component={Login} />
+                <Route path='/leaderboard' component={Leaderboard} />
+                <Route component={NoMatch} />
+              </Switch>
             </div>
         }
       </Router>
