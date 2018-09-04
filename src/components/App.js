@@ -15,6 +15,7 @@ import Leaderboard from './Leaderboard';
 import Login from './Login';
 import QuestionContainer from './QuestionContainer'
 import QCPoll from './QCPoll'
+import NoMatch from './NoMatch'
 
 
 class App extends Component {
@@ -39,6 +40,7 @@ class App extends Component {
               <Route path='/add' component={NewQuestion} />
               <Route path='/login' component={Login} />
               <Route path='/leaderboard' component={Leaderboard} />
+              <Route component={NoMatch} />
             </div>
         }
       </Router>
