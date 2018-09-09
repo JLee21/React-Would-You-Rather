@@ -16,19 +16,14 @@ export default function questions (state = {}, action) {
       And push the question ID onto that user's question array.
      */
     case SAVE_QUESTION :
-      const { question, users } = action;
+      const { question } = action;
       return {
         ...state,
         [question.id]: question,
-        [question.author]: {
-          ...state[question.author],
-          questions: 'Meow'
-        }
       }
+
     case SAVE_ANSWER :
-      console.log('saveAnswer action', action);
       const { authedUser, qid, answer } = action.answer;
-      console.log('saveAnswer', state[qid]);
       return {
         ...state,
         [qid]: {
