@@ -7,39 +7,40 @@ import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import ProfileTab from './ProfileTab';
+import { Nav, Navbar, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
 
 class CenteredTabs extends React.Component {
 
-  state = {
-    value: 0,
-  }
-
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
-  getUserNameFromID = () => {
-    const { authedUser, users } = this.props
-    const user = users[authedUser];
-    return authedUser
-  }
-
   render() {
-    const { authedUser } = this.props;
+    const { username } = this.props;
 
     return (
-      <div className=''>
-        <nav className=''>
-          <NavLink to='/' exact>Home</NavLink>
-          <NavLink to='/add' activeClassName='active'>New Question</NavLink>
-          <NavLink to='/leaderboard' activeClassName='active'>Leader Board</NavLink>
-          <NavLink to='/login' activeClassName='active'>
-            <div className='user-login'>
-              <ProfileTab authedUser={this.getUserNameFromID()}/>
-            </div>
-          </NavLink>
-        </nav>
-      </div>
+      <Navbar inverse collapseOnSelect>
+        <Navbar.Header>
+          <Navbar.Brand>
+            <NavLink to='/' exact>Would You Rather</NavLink>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+        </Navbar.Header>
+        <Navbar.Collapse>
+          <Nav>
+            <NavItem>
+              <NavLink to='/add' activeClassName='active'>New Question</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink to='/leaderboard' activeClassName='active'>Leader Board</NavLink>
+            </NavItem>
+          </Nav>
+          <Nav pullRight>
+            <NavItem>
+              <NavLink to='/login' activeClassName='active'>
+                  <ProfileTab authedUser={username}/>
+              </NavLink>
+            </NavItem>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
     )
   }
 }
@@ -49,8 +50,11 @@ CenteredTabs.propTypes = {
 };
 
 function mapStateToProps ({ authedUser, users }) {
+  const username = users[authedUser].name
   return {
-    authedUser, users
+    username,
+    authedUser,
+    users
   }
 }
 
