@@ -5,7 +5,7 @@ function ProfileTab (props) {
   const { authedUser } = props;
 
   return (
-    <p>Welcome {authedUser}!</p>
+    <p className='user-login'>Welcome <span className='user-login'>{authedUser}</span>!</p>
   )
 }
 

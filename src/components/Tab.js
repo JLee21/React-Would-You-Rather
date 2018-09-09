@@ -19,12 +19,15 @@ class CenteredTabs extends React.Component {
       <Navbar inverse collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <NavLink to='/' exact>Would You Rather</NavLink>
+            <NavLink to='/' exact>Would You Rather...</NavLink>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
+            <NavItem>
+              <NavLink to='/' activeClassName='active'>Questions</NavLink>
+            </NavItem>
             <NavItem>
               <NavLink to='/add' activeClassName='active'>New Question</NavLink>
             </NavItem>
@@ -35,7 +38,7 @@ class CenteredTabs extends React.Component {
           <Nav pullRight>
             <NavItem>
               <NavLink to='/login' activeClassName='active'>
-                  <ProfileTab authedUser={username}/>
+                  Welcome {username}!
               </NavLink>
             </NavItem>
           </Nav>

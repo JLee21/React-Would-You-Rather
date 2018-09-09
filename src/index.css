@@ -1,12 +1,62 @@
+
+/*
+  primary: #47DDDA
+  highlight: #EAEBEB
+  background: EAEBEB
+
+ */
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Roboto' !important;
+  font-weight: bold;
+  background: #EAEBEB;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
+.navbar {
+  border-radius: 0;
+  letter-spacing:  0.02em;
+}
+
+.btn.btn-primary {
+  color: #47DDDA !important;
+  background: #3c3c3c !important;
+  font-family: 'Roboto' !important;
+  font-weight: lighter !important;
+  padding: 4px;
+  letter-spacing: 2px;
+  font-size: 1.4em;
+  border-radius: 0;
+}
+
+.btn.btn-primary:hover {
+  color: white !important;
+}
+
+.navbar-brand {
+  color: #47DDDA !important;
+}
+.navbar-brand:hover {
+  color: white !important;
+}
+
+a {
+  color: #C2C3C4 !important;
+}
+a:hover {
+  color: white !important;
+  border-bottom: white !important;
 }
 
 .user-login {
   margin: 10px;
   text-align: right;
+  color: #47DDDA !important;
 }
 
 .avatar {

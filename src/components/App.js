@@ -16,6 +16,7 @@ import Login from './Login';
 import QuestionContainer from './QuestionContainer'
 import QCPoll from './QCPoll'
 import NoMatch from './NoMatch'
+import { Grid } from 'react-bootstrap'
 
 
 class App extends Component {
@@ -33,7 +34,7 @@ class App extends Component {
           ? <div>
               <Login />
             </div>
-          : <div>
+          : <Grid fluid="true">
               <CenteredTabs />
               <Switch>
                 <Route path='/' exact component={Dashboard} />
@@ -43,7 +44,7 @@ class App extends Component {
                 <Route path='/leaderboard' component={Leaderboard} />
                 <Route component={NoMatch} />
               </Switch>
-            </div>
+            </Grid>
         }
       </Router>
     );
