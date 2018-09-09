@@ -39,6 +39,7 @@ class NewQuestion extends Component {
       optionTwoText,
       author: authedUser
     }
+    console.log(question);
     this.clearUserInput()
     this.state = {
       toHome: true
@@ -85,37 +86,15 @@ class NewQuestion extends Component {
                   className=''
                   maxLength={280}
                 />
-                <FormGroup controlId="formControlsTextarea">
-                  <FormControl
-                    id='optionOne'
-                    componentClass="textarea"
-                    placeholder="Enter Option One Here..."
-                    value={optionOneText}
-                    onChange={this.handleChange}
-                  />
-                </FormGroup>
-                <FormGroup controlId="formControlsTextarea">
-                  <FormControl
-                    componentClass="textarea"
-                    id='optionTwo'
-                    placeholder="Enter Option Two Here..."
-                    value={optionTwoText}
-                    onChange={this.handleChange}
-                  />
-                </FormGroup>
-                <Button
-                  bsStyle="primary"
-                  type='submit'
-                  disabled={(optionTwoText === '') && (optionTwoText === '')}
-                  block>
-                  SUBMIT
-                </Button>
                 <button
                   className=''
                   type='submit'
                   disabled={(optionTwoText === '') && (optionTwoText === '')}>
                   Submit
                 </button>
+
+
+
               </form>
             </div>
           </Col>
