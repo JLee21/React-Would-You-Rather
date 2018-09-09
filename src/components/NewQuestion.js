@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleAddQuestion } from '../actions/questions'
-import { Grid, Row, Col, Button, FieldGroup, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
 /*
 It would be no fun to vote in polls if we couldn’t post our own questions!
@@ -12,6 +11,8 @@ a new poll should be created, the user should be taken to the home page,
 and the new polling question should appear in the correct category on the
 home page.
  */
+
+const AUTHOR = 'sarahedo'
 
 class NewQuestion extends Component {
 
@@ -39,7 +40,6 @@ class NewQuestion extends Component {
       optionTwoText,
       author: authedUser
     }
-    console.log(question);
     this.clearUserInput()
     this.state = {
       toHome: true
@@ -64,42 +64,33 @@ class NewQuestion extends Component {
     const { optionOneText, optionTwoText } = this.state
 
     return (
-      <Grid>
-        <Row className="show-grid justify-content-center text-center">
-          <Col xs={12} md={5}>
-            <div>
-              <h3 className='text-center'>Compose A New Question</h3>
-              <form className='' onSubmit={this.handleSubmit}>
-                <textarea
-                  id='optionOne'
-                  placeholder="Enter Option One Here..."
-                  value={optionOneText}
-                  onChange={this.handleChange}
-                  className=''
-                  maxLength={280}
-                />
-                <textarea
-                  id='optionTwo'
-                  placeholder="Enter Option Two Here..."
-                  value={optionTwoText}
-                  onChange={this.handleChange}
-                  className=''
-                  maxLength={280}
-                />
-                <button
-                  className=''
-                  type='submit'
-                  disabled={(optionTwoText === '') && (optionTwoText === '')}>
-                  Submit
-                </button>
-
-
-
-              </form>
-            </div>
-          </Col>
-        </Row>
-      </Grid>
+      <div>
+        <h3 className=''>Compose New Question</h3>
+        <form className='' onSubmit={this.handleSubmit}>
+          <textarea
+            id='optionOne'
+            placeholder="Enter Option One Here..."
+            value={optionOneText}
+            onChange={this.handleChange}
+            className=''
+            maxLength={280}
+          />
+          <textarea
+            id='optionTwo'
+            placeholder="Enter Option Two Here..."
+            value={optionTwoText}
+            onChange={this.handleChange}
+            className=''
+            maxLength={280}
+          />
+          <button
+            className='btn'
+            type='submit'
+            disabled={(optionTwoText === '') && (optionTwoText === '')}>
+            Submit
+          </button>
+        </form>
+      </div>
     )
   }
 }

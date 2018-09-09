@@ -27,12 +27,10 @@ class QuestionContainer extends Component {
   }
 }
 
-function mapStateToProps ({ }, props) {
-
-  const { questions } = props
+function mapStateToProps ({ questions }, props) {
 
   return {
-    questions
+    questions: props.questions
   }
 }
 

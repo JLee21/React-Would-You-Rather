@@ -34,7 +34,7 @@ class App extends Component {
           ? <div>
               <Login />
             </div>
-          : <Grid fluid="true">
+          : <Grid fluid={true}>
               <CenteredTabs />
               <Switch>
                 <Route path='/' exact component={Dashboard} />

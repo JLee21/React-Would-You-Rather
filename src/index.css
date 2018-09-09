@@ -38,6 +38,12 @@ body {
   color: white !important;
 }
 
+.navbar-nav span[role=button] {
+  padding: 15px;
+  display: inline-block;
+  line-height: 20px;
+}
+
 .navbar-brand {
   color: #47DDDA !important;
 }

@@ -9,6 +9,10 @@ import Tab from '@material-ui/core/Tab';
 import ProfileTab from './ProfileTab';
 import { Nav, Navbar, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
+/*
+  Note: the componentClass in NavItem comes from:
+  https://stackoverflow.com/questions/42561137/link-cannot-appear-as-a-descendant-of-a-link
+ */
 
 class CenteredTabs extends React.Component {
 
@@ -25,18 +29,18 @@ class CenteredTabs extends React.Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-            <NavItem>
+            <NavItem componentClass='span'>
               <NavLink to='/' activeClassName='active'>Questions</NavLink>
             </NavItem>
-            <NavItem>
+            <NavItem componentClass='span'>
               <NavLink to='/add' activeClassName='active'>New Question</NavLink>
             </NavItem>
-            <NavItem>
+            <NavItem componentClass='span'>
               <NavLink to='/leaderboard' activeClassName='active'>Leader Board</NavLink>
             </NavItem>
           </Nav>
           <Nav pullRight>
-            <NavItem>
+            <NavItem componentClass='span'>
               <NavLink to='/login' activeClassName='active'>
                   Welcome {username}!
               </NavLink>
