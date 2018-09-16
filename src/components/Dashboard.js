@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
+import { Tabs, Tab, Grid, Col, Row } from 'react-bootstrap'
 import QuestionContainer from './QuestionContainer'
 
 /*
@@ -23,36 +23,34 @@ class Dashboard extends Component {
 
   handleAnsweredToggle = (e) => {
     e.preventDefault()
-    console.log(e.target.value);
     this.setState((prevState) => ({
       showAnswered: !prevState.showAnswered
     }))
   }
 
   render () {
-    const { authedUser, answeredSorted, unansweredSorted } = this.props;
+    const { answeredSortedIds, unansweredSortedIds } = this.props;
     const { showAnswered } = this.state;
 
     return (
-      <div>
-        <p>{authedUser}</p>
-        <button onClick={this.handleAnsweredToggle}>
-          <h1>Answered</h1>
-        </button>
-        <button onClick={this.handleAnsweredToggle}>
-          <h1>Unanswered</h1>
-        </button>
-        {showAnswered
-          ? <div>
-              <p>Answered</p>
-              <QuestionContainer questions={answeredSorted}/>
-            </div>
-          : <div>
-              <p>Unanswered</p>
-              <QuestionContainer questions={unansweredSorted}/>
-            </div>
-        }
-      </div>
+      <Grid>
+        <Row className="show-grid justify-content-center">
+        <Col xs={12} md={8} mdOffset={2}>
+          <Tabs defaultActiveKey={1}>
+            <Tab eventKey={1} title="Answered">
+              <div>
+                <QuestionContainer questions={answeredSortedIds}/>
+              </div>
+            </Tab>
+            <Tab eventKey={2} title="Unanswered">
+              <div>
+                <QuestionContainer questions={unansweredSortedIds}/>
+              </div>
+            </Tab>
+          </Tabs>
+          </Col>
+        </Row>
+      </Grid>
     )
   }
 }
@@ -61,18 +59,16 @@ function mapStateToProps ({ questions, users, authedUser }) {
 
   // Answered questions, timestamp sorted
   const answered = Object.keys(users[authedUser].answers)
-  const answeredSorted = answered.sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+  const answeredSortedIds = answered.sort((a,b) => questions[b].timestamp - questions[a].timestamp)
 
   // Unanswered questions, timestamp sorted
   const questionIDs = Object.keys(questions)
   const unanswered = questionIDs.filter((id) => -1 == answered.indexOf(id))
-  const unansweredSorted = unanswered.sort((a,b) => questions[b].timestamp - questions[a].timestamp)
-  console.log('answered:', answered);
+  const unansweredSortedIds = unanswered.sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+  console.log('Dashboard');
   return {
-    answeredSorted,
-    unansweredSorted,
-    users,
-    authedUser
+    answeredSortedIds,
+    unansweredSortedIds
   }
 }
 

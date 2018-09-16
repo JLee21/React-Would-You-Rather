@@ -30,7 +30,7 @@ export function handleSaveAnswer (answer) {
   }
 }
 export function handleAddQuestion (question) {
-  // B/c this action will by asynchronous, we'll need to wrap itself as a function
+  // B/c this acti  on will by asynchronous, we'll need to wrap itself as a function
   // reather than just dispatching it with dispatch(handleAddTweet())
 
   // I.e., when a component adds a new question,

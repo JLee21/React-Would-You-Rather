@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { handleInitialData } from '../actions/shared';
+import { Grid, Col, Row, Button } from 'react-bootstrap'
 
 /*
 What would be the point of seeing answered and unanswered polling
@@ -35,32 +36,45 @@ class QuestionCard extends Component {
     const { question, username, avatarURL } = this.props;
 
     return (
-      <div key={question.id}>
-        <hr></hr>
-        <img
-          className='avatar'
-          src={avatarURL}
-        />
-        <p>{username} asks...</p>
-        <p>Would you rather {question.optionOne.text.split(' ').slice(0, 5).join(' ')}...</p>
-        <Link to={`/questions/${question.id}`}>
-          <button>
-            View Poll!
-          </button>
-        </Link>
-      </div>
+        <Row className="card align-items-center">
+          <Col xs={2} md={2} className="">
+            <div key={question.id}>
+              <div className="card-head">
+                <img
+                  className='avatar'
+                  src={avatarURL}
+                />
+                <p>{username} asks...</p>
+              </div>
+            </div>
+          </Col>
+          <Col xs={8} md={9} className="card-body">
+            <div className="card-body">
+              <p>Would you rather {question.optionOne.text.split(' ').slice(0, 5).join(' ')}...</p>
+            </div>
+          </Col>
+          <div className="card-tail">
+          <Link to={`/questions/${question.id}`}>
+          <Col xs={2} md={1} className="card-tail">
+                <div class="glyphicon glyphicon-chevron-right" aria-hidden="true"></div>
+          </Col>
+          </Link>
+          </div>
+        </Row>
+
     )
   }
 }
 
 function mapStateToProps ({ users, authedUser, questions }, { id }) {
   const question = questions[id];
-  const user = users[authedUser]
-  const username = users[question.author].name
+  const user = users[authedUser];
+  const username = users[question.author].name;
   const avatarURL = users[question.author].avatarURL;
 
   return {
     users,
+    username,
     question,
     user,
     avatarURL

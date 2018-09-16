@@ -13,13 +13,14 @@ class QuestionContainer extends Component {
 
   render () {
     const { questions } = this.props;
+    console.log('QC questions', questions);
 
     return (
       <div>
         { // Display multiple unanswered questions
           questions && questions.map(id => {
           return (
-            <QuestionCard id={id} />
+            <QuestionCard key={id} id={id} />
           )
         })}
       </div>
@@ -27,11 +28,4 @@ class QuestionContainer extends Component {
   }
 }
 
-function mapStateToProps ({ questions }, props) {
-
-  return {
-    questions: props.questions
-  }
-}
-
-export default withRouter(connect(mapStateToProps)(QuestionContainer))
+export default QuestionContainer

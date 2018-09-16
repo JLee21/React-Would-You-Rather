@@ -12,12 +12,11 @@ import LeaderboardCard from './LeaderboardCard'
 class Leaderboard extends Component {
   render () {
     const { users, userIDSorted } = this.props;
-    console.log(users);
 
     return (
       <div>
-        {users && userIDSorted.map(userID => (
-          <LeaderboardCard user={users[userID]} />
+        {userIDSorted.map(userID => (
+          <LeaderboardCard key={userID} user={users[userID]} />
         ))}
       </div>
     )
@@ -25,6 +24,7 @@ class Leaderboard extends Component {
 }
 
 function getCombined (user) {
+  // Return sum of number of questions asked and questions answered.
   let questionCount = user.questions.length;
   let answerCount = Object.keys(user.answers).length;
 
