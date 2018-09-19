@@ -50,7 +50,7 @@ class QuestionCard extends Component {
           </Col>
           <Col xs={8} md={9} className="card-body">
             <div className="card-body">
-              <p>Would you rather {question.optionOne.text.split(' ').slice(0, 5).join(' ')}...</p>
+              <p>Would you rather {question.optionOne.text.split(' ').slice(0, 4).join(' ')}...</p>
             </div>
           </Col>
           <div className="card-tail">

@@ -73,7 +73,7 @@ class NewQuestion extends Component {
               <Panel bsStyle="primary">
                 <Panel.Heading>Compose A New Question</Panel.Heading>
                 <Panel.Body>
-                  <form className='' onSubmit={this.handleSubmit}>
+                  <form onSubmit={this.handleSubmit}>
                     <Panel>
                       <Panel.Heading>Would you rather ...</Panel.Heading>
                       <Panel.Body>

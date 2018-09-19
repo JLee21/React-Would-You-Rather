@@ -23,6 +23,16 @@ body {
   letter-spacing:  0.02em;
 }
 
+h1 {
+  color: #47DDDA;
+  font-family: 'Roboto' !important;
+  font-weight: lighter !important;
+  font-size: 1.6em;
+  letter-spacing: 2px;
+  border: none;
+  text-align: center;
+}
+
 .btn {
   color: #47DDDA !important;
   background: white !important;
@@ -123,9 +133,9 @@ body {
   width: 100px;
   height: inherit;
   margin-left: -15px;
-  padding: 2px;
+  /* padding: 2px; */
   border-right: 5px solid #47DDDA;
-  font-size: 1.5vh;
+  font-size: 1.9vh;
   font-weight: lighter;
   text-align: center;
   color:  white;

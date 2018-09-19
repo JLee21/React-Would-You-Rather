@@ -35,19 +35,19 @@ class Dashboard extends Component {
     return (
       <Grid>
         <Row className="show-grid justify-content-center">
-        <Col xs={12} md={8} mdOffset={2}>
-          <Tabs defaultActiveKey={1}>
-            <Tab eventKey={1} title="Answered">
-              <div>
-                <QuestionContainer questions={answeredSortedIds}/>
-              </div>
-            </Tab>
-            <Tab eventKey={2} title="Unanswered">
-              <div>
-                <QuestionContainer questions={unansweredSortedIds}/>
-              </div>
-            </Tab>
-          </Tabs>
+          <Col xs={12} md={8} mdOffset={2}>
+            <Tabs defaultActiveKey={1}>
+              <Tab eventKey={1} title="Answered">
+                <div>
+                  <QuestionContainer questions={answeredSortedIds}/>
+                </div>
+              </Tab>
+              <Tab eventKey={2} title="Unanswered">
+                <div>
+                  <QuestionContainer questions={unansweredSortedIds}/>
+                </div>
+              </Tab>
+            </Tabs>
           </Col>
         </Row>
       </Grid>
