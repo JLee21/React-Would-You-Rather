@@ -34,7 +34,7 @@ class Dashboard extends Component {
 
     return (
       <Grid>
-        <Row className="show-grid justify-content-center">
+        <Row className="justify-content-center">
           <Col xs={12} md={8} mdOffset={2}>
             <Tabs defaultActiveKey={1}>
               <Tab eventKey={1} title="Answered">

@@ -6,16 +6,31 @@
 
  */
 
+@primary: #3c3c3c;
+@highlight: #47DDDA;
+@background: #EAEBEB;
+
 body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto' !important;
   font-weight: bold;
-  background: #EAEBEB;
 }
 
 .container-fluid {
   padding: 0;
+}
+.no-gutters {
+  padding-left: 0;
+  padding-right: 0;
+  margin-right: 0;
+  margin-left: 0;
+
+  > .col,
+  > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
 }
 
 .navbar {
@@ -24,7 +39,7 @@ body {
 }
 
 h1 {
-  color: #47DDDA;
+  color: @highlight;
   font-family: 'Roboto' !important;
   font-weight: lighter !important;
   font-size: 1.6em;
@@ -34,17 +49,16 @@ h1 {
 }
 
 .btn {
-  color: #47DDDA !important;
   background: white !important;
   font-family: 'Roboto' !important;
   font-weight: lighter !important;
   font-size: 1em;
   padding: 4px;
   letter-spacing: 1px;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 .btn:hover {
-  border-bottom: 1px solid #3c3c3c;
+  color: #47DDDA !important;
 }
 
 .btn.btn-primary {
@@ -60,7 +74,6 @@ h1 {
 .btn.btn-primary:hover {
   color: white !important;
 }
-
 .navbar-nav span[role=button] {
   padding: 15px;
   display: inline-block;
@@ -75,7 +88,7 @@ h1 {
   font-weight: lighter !important;
   font-size: 1.6em;
   letter-spacing: 0.7px;
-}
+}s
 .navbar-brand:hover {
   color: white !important;
 }
@@ -110,6 +123,8 @@ h1 {
   color: #828282 !important;
   background-color: none !important;
   border: none;
+
+
 }
 .nav-tabs>li>a:hover {
   color: #47DDDA !important;
@@ -121,42 +136,59 @@ h1 {
   background-color: none !important;
 }
 .card {
-  /* background-color: #3c3c3c; */
   margin-top: 20px;
   border: 2px solid;
   border-radius: 0px;
-  border-color: #3c3c3c !important;
-  border: 2px solid;
-  /* display: flex; */
 }
 .card-head {
-  width: 100px;
-  height: inherit;
-  margin-left: -15px;
-  /* padding: 2px; */
-  border-right: 5px solid #47DDDA;
+  width: 60px;
+  height: 90px;
+  border-right: 5px solid @highlight;
   font-size: 1.9vh;
   font-weight: lighter;
   text-align: center;
   color:  white;
-  background-color: #3c3c3c;
+  background-color: @primary;
 }
 .card-head>p {
   margin-top: 8px;
+  margin-bottom: 0px;
+}
+.card-head-horz {
+  width: auto;
+  height: 50px;
+  background-color: @primary;
+  border-bottom: 5px solid @highlight;
+  font-size: 20px;
+  font-weight: 100;
+  color:  white;
+  &p {
+    color:  white;
+  }
 }
 .card-body {
   position: relative;
-  margin-top: 1%;
-  padding-left: 25px;
-  font-size: 3vh;
-  font-weight: lighter;
+  font-size: 20px;
+  font-weight: 100;
   display: inline-block;
+  &p {
+    display: inline;
+    padding-right: 10px;
+  }
+  &-horz {
+    width: inherit;
+    & p {
+      font-size: 20px;
+      font-weight: 100;
+      padding-left : 3px;
+    }
+  }
 }
-.card-body p {
-  display: inline;
-  padding-right: 10px;
+.card-body-asks > p{
+  font-size: 1.9vh;
 }
 .card-tail{
+  vertical-align: middle;
   height: inherit;
   margin-right: -10px !important;
   padding-right: 10px;
@@ -168,6 +200,26 @@ h1 {
 }
 .glyphicon {
     font-size: 25px;
+}
+.your-vote {
+  display: flex;
+  position: relative;
+  margin-top: -50px;
+  padding: 7px;
+  top: 30px;
+  float: right;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: lighter;
+  letter-spacing: 0.4px;
+  text-align: center;
+  color: @highlight;
+  background-color: @primary;
+  border: 3px solid;
+  border-color: @highlight;
+  text-shadow: 0px 0px 10px @highlight;
 }
 
 .panel {
@@ -199,10 +251,11 @@ h1 {
 
 a {
   color: #C2C3C4 !important;
-}
-a:hover {
-  color: white !important;
-  border-bottom: white !important;
+
+  &:hover {
+    color: white !important;
+    border-bottom: white !important;
+  }
 }
 
 .user-login {
@@ -212,12 +265,16 @@ a:hover {
 }
 
 .avatar {
-  margin-top: 5px;
-  height: 50px;
-  width: 50px;
+  /* margin-top: 5px; */
+  position: relative;
+  top: -10px;
+  left: -2px;
+  /* top: 50%; */
+  height: 70px;
+  width: 70px;
   border: 0px solid;
   border-radius: 50%;
-  border-color: #47DDDA;
+  border-color: @highlight;
   border-width: 2px;
 }
 
@@ -225,4 +282,29 @@ a:hover {
   display: inline-block;
   vertical-align: top;
   margin: 0 auto;
+}
+
+.inline {
+  display: inline;
+}
+
+
+.progress {
+  display: flex;
+  color: @highlight;
+  border-radius: 0px;
+  height: 30px;
+  width: 100%;
+  vertical-align: middle;
+  margin-bottom: 30px;
+
+}
+.progress-bar {
+  padding: 5px;
+  color: @highlight;
+  background-image: linear-gradient(to bottom, darken(@primary, 0%) 0, darken(@primary, 0%) 100%);
+  background-color: @primary !important;
+  font-size: 20px;
+  font-weight: 100;
+  text-shadow: 0px 0px 10px @highlight;
 }

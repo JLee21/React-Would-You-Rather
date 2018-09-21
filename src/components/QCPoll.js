@@ -4,6 +4,9 @@ import { withRouter, Redirect } from 'react-router-dom'
 import { handleInitialData } from '../actions/shared'
 import { handleSaveAnswer } from '../actions/questions'
 import QuestionSubmitted from './QuestionSubmitted'
+import { Grid, Row, Col, Button, ButtonGroup, FieldGroup, FormGroup, ControlLabel,
+  FormControl, Radio
+} from 'react-bootstrap';
 
 /*
 What would be the point of seeing answered and unanswered polling
@@ -46,25 +49,24 @@ class QCPoll extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-
+    const chosenAnswer = e.target.value
     const { user, question } = this.props;
 
     const answer = {
       authedUser: user.id,
       qid: question.id,
-      answer: this.state.option
+      answer: chosenAnswer
     }
     this.props.dispatch(handleSaveAnswer(answer))
 
-    this.setState(() => {
+    this.setState({
       toHome: true
     })
   }
 
   render () {
-    const { users, question, user, isAnswered } = this.props;
+    const { users, question, user, isAnswered, username, avatarURL } = this.props;
     const { toHome } = this.state;
-    console.log('render toHome:', this.state.toHome);
 
     if (toHome === true) {
       return <Redirect to='/' />
@@ -78,39 +80,32 @@ class QCPoll extends Component {
       }
 
       return (
-        <div>
-          <img
-            className='avatar'
-            src={users[question.author].avatarURL}
-          />
-          <p>{users[question.author].name} asks...</p>
-
-          <form onSubmit={this.handleSubmit}>
-           <label>
-             <input
-               type="radio"
-               value="optionOne"
-               checked={this.state.option === "optionOne"}
-               onChange={this.handleChange}
-             />
-             {question.optionOne.text}
-           </label>
-           <hr></hr>
-           <label>
-             <input
-               type="radio"
-               value="optionTwo"
-               checked={this.state.option === "optionTwo"}
-               onChange={this.handleChange}
-             />
-             {question.optionTwo.text}
-           </label>
-           <button
-            type="submit"
-            disabled={this.state.option == ''}
-          >Vote</button>
-         </form>
-        </div>
+        <Grid>
+          <Row className="card no-gutters">
+            <Col xs={2} md={2} className="no-gutters">
+              <div key={question.id}>
+                <div className="card-head">
+                  <img
+                    className='avatar'
+                    src={avatarURL}
+                  />
+                </div>
+              </div>
+            </Col>
+            <Col xs={8} md={9} className="card-body">
+              <div className="card-body no-gutters">
+                <div className="card-body-asks">
+                  <p>{username} asks...</p>
+                </div>
+                <p>Would you rather ... </p>
+                  <ButtonGroup vertical>
+                    <Button value='optionOne' type='button' onClick={this.handleSubmit} bsStyle="default">{question.optionOne.text}</Button>
+                    <Button value='optionOne' type='button' onClick={this.handleSubmit} bsStyle="default">{question.optionTwo.text}</Button>
+                  </ButtonGroup>
+              </div>
+            </Col>
+          </Row>
+        </Grid>
       )
     } else {
       return (<div></div>)
@@ -128,6 +123,8 @@ function mapStateToProps ({ users, authedUser, questions }, props) {
   const { id } = props.match.params;
   const question = questions[id];
   const user = users[authedUser];
+  const avatarURL = users[question.author].avatarURL;
+  const username = users[question.author].name;
 
   const isAnswered = checkIfAnswered(users, authedUser, id);
 
@@ -135,7 +132,9 @@ function mapStateToProps ({ users, authedUser, questions }, props) {
     users,
     question,
     user,
-    isAnswered
+    isAnswered,
+    avatarURL,
+    username
   }
 }
 

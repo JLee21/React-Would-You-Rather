@@ -36,29 +36,29 @@ class QuestionCard extends Component {
     const { question, username, avatarURL } = this.props;
 
     return (
-        <Row className="card align-items-center">
-          <Col xs={2} md={2} className="">
-            <div key={question.id}>
-              <div className="card-head">
-                <img
-                  className='avatar'
-                  src={avatarURL}
-                />
-                <p>{username} asks...</p>
-              </div>
+        <Row className="card">
+          <Col xs={2} md={2} className="no-gutters">
+            <div className="card-head">
+              <img
+                className='avatar'
+                src={avatarURL}
+              />
             </div>
           </Col>
           <Col xs={8} md={9} className="card-body">
             <div className="card-body">
-              <p>Would you rather {question.optionOne.text.split(' ').slice(0, 4).join(' ')}...</p>
+              <div className="card-body-asks">
+                <p>{username} asks...</p>
+              </div>
+              <p>Would you rather {question.optionOne.text.split(' ').slice(0, 7).join(' ')}...</p>
             </div>
           </Col>
           <div className="card-tail">
-          <Link to={`/questions/${question.id}`}>
-          <Col xs={2} md={1} className="card-tail">
-                <div class="glyphicon glyphicon-chevron-right" aria-hidden="true"></div>
-          </Col>
-          </Link>
+            <Link to={`/questions/${question.id}`}>
+              <Col xs={2} md={1} className="card-tail">
+                    <div class="glyphicon glyphicon-chevron-right" aria-hidden="true"></div>
+              </Col>
+            </Link>
           </div>
         </Row>
 

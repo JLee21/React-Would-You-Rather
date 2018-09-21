@@ -4,12 +4,12 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
 import middleware from './middleware'
-import './index.css';
+import './index.less';
 import App from './components/App';
 // Semantic UI
-import './semantic/dist/semantic.min.css';
+// import './semantic/dist/semantic.min.css';
 // Material Design
-import 'typeface-roboto'
+// import 'typeface-roboto'
 
 const store = createStore(reducer, middleware)
 

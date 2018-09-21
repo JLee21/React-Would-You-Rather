@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Grid, Row, Col, Button, ProgressBar } from 'react-bootstrap';
 
 /*
   Display:
@@ -12,28 +13,42 @@ import { connect } from 'react-redux'
 class QuestionSubmitted extends Component {
   render () {
     const { usersAnswer, askedBy, avatarURL, question, votes } = this.props
+    console.log(votes.optionOne/votes.total * 100);
     return (
-      <div>
-        Asked by {askedBy}
-        <img
-          className='avatar'
-          src={avatarURL}
-        />
-        <hr></hr>
-        Results
-        <br></br>
-        {question.optionOne.text}
-        Votes {votes.optionOne}
-        {usersAnswer == 'optionOne' &&
-          <p>Your Vote!</p>
-        }
-        <br></br>
-        {question.optionTwo.text}
-        Votes {votes.optionTwo}
-        {usersAnswer == 'optionTwo' &&
-          <span> <p>Your Vote!</p> </span>
-        }
-      </div>
+      <Grid>
+        <Row>
+          <Col xs={12} md={7} mdOffset={2} className="card no-gutters">
+            <div className="card-head-horz">
+              <img className='avatar' src={avatarURL}/>
+              Asked by {askedBy}
+              <p>Asked by {askedBy}</p>
+            </div>
+            <hr></hr>
+            <div className="card-body-horz">
+              <p>Would your rather {question.optionOne.text}?</p>
+              {usersAnswer == 'optionOne' &&
+                <span>
+                  <div class="your-vote" aria-hidden="true">
+                    Your Vote!
+                  </div>
+                </span>
+              }
+              <ProgressBar now={votes.optionOne/votes.total * 100} label={`${votes.optionOne} / ${votes.total}`} />
+              <p>Would your rather {question.optionTwo.text}?</p>
+              {usersAnswer == 'optionTwo' &&
+                <span>
+                  <div class="your-vote" aria-hidden="true">
+                    Your Vote!
+                  </div>
+                </span>
+              }
+              <ProgressBar now={votes.optionTwo/votes.total * 100} label={`${votes.optionTwo} / ${votes.total}`} />
+
+              <p>Total Votes: {votes.total}</p>
+            </div>
+          </Col>
+        </Row>
+    </Grid>
     )
   }
 }
@@ -46,7 +61,8 @@ function mapStateToProps ({ users, authedUser, questions }, props) {
   const usersAnswer = users[authedUser].answers[questionID];
   const votes = {
     optionOne: question.optionOne.votes.length,
-    optionTwo: question.optionTwo.votes.length
+    optionTwo: question.optionTwo.votes.length,
+    total: question.optionOne.votes.length + question.optionTwo.votes.length
   }
 
   return {
