@@ -12,7 +12,7 @@ import { setAuthedUser } from '../actions/authedUser'
  */
 
 // Uncomment whenever developing (also the commented line below)
-const AUTHED_ID = 'tylermcginnis'
+// const AUTHED_ID = 'tylermcginnis'
 
 export function handleInitialData () {
   return (dispatch) => {
@@ -20,7 +20,7 @@ export function handleInitialData () {
       .then(({ users, questions }) => {
         dispatch(getUsers(users))
         dispatch(storeQuestions(questions))
-        dispatch(setAuthedUser(AUTHED_ID))
+        // dispatch(setAuthedUser(AUTHED_ID))
       })
   }
 }
