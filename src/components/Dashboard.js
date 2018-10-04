@@ -25,7 +25,7 @@ class Dashboard extends Component {
       <Grid>
         <Row className="justify-content-center">
           <Col xs={12} md={8} mdOffset={2}>
-            <Tabs id={''} defaultActiveKey={2}>
+            <Tabs id={'key'} defaultActiveKey={2}>
               <Tab eventKey={2} title="Unanswered">
                 <div>
                   <QuestionContainer questions={unansweredSortedIds}/>
@@ -54,7 +54,7 @@ function mapStateToProps ({ questions, users, authedUser }) {
   const questionIDs = Object.keys(questions)
   const unanswered = questionIDs.filter((id) => -1 === answered.indexOf(id))
   const unansweredSortedIds = unanswered.sort((a,b) => questions[b].timestamp - questions[a].timestamp)
-  console.log('Dashboard');
+
   return {
     answeredSortedIds,
     unansweredSortedIds

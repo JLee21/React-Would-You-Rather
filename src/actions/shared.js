@@ -1,7 +1,7 @@
 import { getInitialData } from '../utils/api'
 import { getUsers } from '../actions/users'
 import { storeQuestions } from '../actions/questions'
-import { setAuthedUser } from '../actions/authedUser'
+// import { setAuthedUser } from '../actions/authedUser'
 
 /*
     Make a API call to our "database" to get our initial data.

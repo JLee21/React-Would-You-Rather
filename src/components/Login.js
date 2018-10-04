@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { Redirect, withRouter } from 'react-router-dom'
 import { setAuthedUser } from '../actions/authedUser'
 import { Grid, Row, Col, Button, FormGroup, FormControl
 } from 'react-bootstrap';
@@ -13,23 +13,13 @@ class Login extends Component {
   state = {
     toHome: false
   }
-  componentDidUpdate () {
-    const { authedUser } = this.props;
-    if (authedUser) {
-      this.setState({
-        userSelect: authedUser
-      })
-    }
-  }
-  handleUserChange = (e) => {
+  handleUserSignIn = (e) => {
     const userSelect = e.target.value
-    this.setState({
-      toHome: true
-    })
+    // this.setState({toHome: true})
+    this.props.history.push('/')
     this.props.dispatch(setAuthedUser(userSelect))
   }
-  signOff = (e) => {
-    e.preventDefault()
+  signOff = () => {
     this.props.dispatch(setAuthedUser(null))
   }
   render () {
@@ -46,7 +36,7 @@ class Login extends Component {
         <Row className="justify-content-center">
           <Col xs={12} md={3} mdOffset={4}>
             <h1>Sign In</h1>
-            <form onChange={this.handleUserChange}>
+            <form onChange={this.handleUserSignIn}>
               <FormGroup controlId="formControlsSelect">
                 <FormControl componentClass="select" placeholder="select">
                   <option key={0}>
@@ -94,4 +84,4 @@ function mapStateToProps ({ users, authedUser }) {
   we need to modify the store so we'll need a dispatch action.
   So we'll need to both options
  */
-export default connect(mapStateToProps)(Login)
+export default withRouter(connect(mapStateToProps)(Login))

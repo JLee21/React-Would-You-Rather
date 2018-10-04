@@ -49,8 +49,6 @@
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
     "resolve": "1.6.0",
-    "semantic-ui": "^2.3.3",
-    "semantic-ui-react": "^0.82.0",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
     "typeface-roboto": "0.0.54",
@@ -64,7 +62,6 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "deploy": "aws s3 sync build/ s3://lee.would-you-rather --acl public-read",
-    "ui": "cd src/semantic && gulp build && gulp",
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
