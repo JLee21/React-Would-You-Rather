@@ -1,6 +1,5 @@
 import React from 'react';
-// import cssModule from 'react-css-modules';
-// import styles from './LeaderboardCard.css';
+import { Grid, Row, Col, Table } from 'react-bootstrap';
 
 class LeaderboardCard extends React.Component {
 
@@ -12,14 +11,40 @@ class LeaderboardCard extends React.Component {
 
   render () {
     const { user } = this.props;
+    const numAnswered = Object.keys(user.answers).length
+    const numQuestion = user.questions.length
 
     return (
       <div className='LeaderboardCard'>
-        <img
-          className='avatar'
-          src={user.avatarURL}
-        />
-        <h3>Score: {this.getScore()}</h3>
+          <Grid>
+            <Row>
+              <Col xs={12} md={5} mdOffset={2} className="card no-gutters">
+                <div className="card-head-horz">
+                  <img alt='' className='avatar' src={user.avatarURL}/>
+                  {user.name}
+                </div>
+                <br></br>
+                <div className="card-body-horz">
+                <Table>
+                    <tbody>
+                      <tr>
+                        <td>Answered</td>
+                        <td>{numAnswered}</td>
+                      </tr>
+                      <tr>
+                        <td>Unanswered</td>
+                        <td>{numQuestion}</td>
+                      </tr>
+                    </tbody>
+                  </Table>
+                  <div className="card-tail">
+                    Score {numAnswered + numQuestion}
+                  </div>
+                </div>
+              </Col>
+            </Row>
+        </Grid>
+
       </div>
     )
   }

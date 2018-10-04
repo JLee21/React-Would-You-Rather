@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { setAuthedUser } from '../actions/authedUser'
-import PropTypes from 'prop-types';
-import { Grid, Row, Col, Button, FieldGroup, FormGroup, ControlLabel,
-  FormControl, Panel
+import { Grid, Row, Col, Button, FormGroup, FormControl
 } from 'react-bootstrap';
 
 /*
@@ -13,31 +11,34 @@ import { Grid, Row, Col, Button, FieldGroup, FormGroup, ControlLabel,
  */
 class Login extends Component {
   state = {
-    userSelect: '',
     toHome: false
   }
   componentDidUpdate () {
     const { authedUser } = this.props;
     if (authedUser) {
-      this.state = {
+      this.setState({
         userSelect: authedUser
-      }
+      })
     }
   }
   handleUserChange = (e) => {
     const userSelect = e.target.value
     this.setState({
-      userSelect,
       toHome: true
     })
     this.props.dispatch(setAuthedUser(userSelect))
   }
+  signOff = (e) => {
+    e.preventDefault()
+    this.props.dispatch(setAuthedUser(null))
+  }
   render () {
-    const { users, avatarURL, authedUser, setAuthedUser } = this.props;
+    const { users, authedUser } = this.props;
     const { toHome } = this.state;
 
+    console.log(toHome);
     if (toHome === true) {
-      return <Redirect to='/'/>
+      return <Redirect exact to='/'/>
     }
 
     return (
@@ -63,6 +64,15 @@ class Login extends Component {
         </Row>
         <Row className="justify-content-center">
           <Col xs={12} md={3} mdOffset={4}>
+          {authedUser &&
+            <Button
+              bsStyle="primary"
+              block
+              onClick={this.signOff}>
+              SIGN OFF
+            </Button>
+          }
+
           </Col>
         </Row>
       </Grid>
@@ -71,15 +81,9 @@ class Login extends Component {
 }
 
 function mapStateToProps ({ users, authedUser }) {
-  let avatarURL
-  if (users[authedUser]) {
-    const avatarURL = users[authedUser].avatarURL;
-  }
-
 
   return {
     users,
-    avatarURL,
     authedUser
   }
 }

@@ -4,8 +4,7 @@ import { withRouter, Redirect } from 'react-router-dom'
 import { handleInitialData } from '../actions/shared'
 import { handleSaveAnswer } from '../actions/questions'
 import QuestionSubmitted from './QuestionSubmitted'
-import { Grid, Row, Col, Button, ButtonGroup, FieldGroup, FormGroup, ControlLabel,
-  FormControl, Radio
+import { Grid, Row, Col, Button, ButtonGroup,
 } from 'react-bootstrap';
 
 /*
@@ -67,13 +66,18 @@ class QCPoll extends Component {
   render () {
     const { users, question, user, isAnswered, username, avatarURL } = this.props;
     const { toHome } = this.state;
+    console.log('', question);
 
     if (toHome === true) {
       return <Redirect to='/' />
     }
 
+    if (!question) {
+      return <Redirect to='/error' />
+    }
+
     if ( users && question && user ) {
-      if (isAnswered != -1) {
+      if (isAnswered !== -1) {
         return (
           <QuestionSubmitted id={question.id}/>
         )
@@ -86,6 +90,7 @@ class QCPoll extends Component {
               <div key={question.id}>
                 <div className="card-head">
                   <img
+                    alt=''
                     className='avatar'
                     src={avatarURL}
                   />
@@ -121,12 +126,21 @@ function checkIfAnswered (users, authedUser, id) {
 function mapStateToProps ({ users, authedUser, questions }, props) {
 
   const { id } = props.match.params;
-  const question = questions[id];
-  const user = users[authedUser];
-  const avatarURL = users[question.author].avatarURL;
-  const username = users[question.author].name;
 
-  const isAnswered = checkIfAnswered(users, authedUser, id);
+  // If a user enters a bad question/:id path, this is the logic that checks.
+  let question,
+      isAnswered,
+      avatarURL,
+      username = null
+
+  if (Object.keys(questions).indexOf(id) !== -1) {
+    question = questions[id];
+    avatarURL = users[question.author].avatarURL;
+    username = users[question.author].name;
+    isAnswered = checkIfAnswered(users, authedUser, id);
+  }
+
+  const user = users[authedUser];
 
   return {
     users,

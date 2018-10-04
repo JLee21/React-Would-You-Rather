@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Grid, Row, Col, Button, ProgressBar } from 'react-bootstrap';
+import { Grid, Row, Col, ProgressBar } from 'react-bootstrap';
 
 /*
   Display:
@@ -19,14 +19,14 @@ class QuestionSubmitted extends Component {
         <Row>
           <Col xs={12} md={7} mdOffset={2} className="card no-gutters">
             <div className="card-head-horz">
-              <img className='avatar' src={avatarURL}/>
+              <img alt='' className='avatar' src={avatarURL}/>
               Asked by {askedBy}
               <p>Asked by {askedBy}</p>
             </div>
             <hr></hr>
             <div className="card-body-horz">
               <p>Would your rather {question.optionOne.text}?</p>
-              {usersAnswer == 'optionOne' &&
+              {usersAnswer === 'optionOne' &&
                 <span>
                   <div class="your-vote" aria-hidden="true">
                     Your Vote!
@@ -35,7 +35,7 @@ class QuestionSubmitted extends Component {
               }
               <ProgressBar now={votes.optionOne/votes.total * 100} label={`${votes.optionOne} / ${votes.total}`} />
               <p>Would your rather {question.optionTwo.text}?</p>
-              {usersAnswer == 'optionTwo' &&
+              {usersAnswer === 'optionTwo' &&
                 <span>
                   <div class="your-vote" aria-hidden="true">
                     Your Vote!

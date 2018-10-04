@@ -1,7 +1,3 @@
-* the dropdown select is not refreshing to what the user selects. store updates ok though.
+* Once the user logs in, the home page is shown.
 
-* Add redirect after user votes on poll.
-  Does not seem to want to redirect back. Something with e.preventDefault().
-  Although NewTweet seems to work just fine.
-
-* Upon submitting the form the user should be taken to the home page --> this appears broke
+* The application asks the user to sign in and shows a 404 page if that poll does not exist. (In other words, if a user creates a poll and then the same or another user tries to access that poll by its url, the user should be asked to sign in and then be shown a 404 page. Please keep in mind that new polls will not be accessible at their url because of the way the backend is set up in this application.)

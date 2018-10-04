@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { handleInitialData } from '../actions/shared';
-import { Grid, Col, Row, Button } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 
 /*
 What would be the point of seeing answered and unanswered polling
@@ -40,13 +40,14 @@ class QuestionCard extends Component {
           <Col xs={2} md={2} className="no-gutters">
             <div className="card-head">
               <img
+                alt=''
                 className='avatar'
                 src={avatarURL}
               />
             </div>
           </Col>
           <Col xs={8} md={9} className="card-body">
-            <div className="card-body">
+            <div className="">
               <div className="card-body-asks">
                 <p>{username} asks...</p>
               </div>
@@ -56,7 +57,7 @@ class QuestionCard extends Component {
           <div className="card-tail">
             <Link to={`/questions/${question.id}`}>
               <Col xs={2} md={1} className="card-tail">
-                    <div class="glyphicon glyphicon-chevron-right" aria-hidden="true"></div>
+                    <div className="glyphicon glyphicon-chevron-right" aria-hidden="true"></div>
               </Col>
             </Link>
           </div>

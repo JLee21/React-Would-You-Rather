@@ -1,11 +1,4 @@
 
-/*
-  primary: 3c3c3c
-  highlight: 47DDDA
-  background: EAEBEB
-
- */
-
 @primary: #3c3c3c;
 @highlight: #47DDDA;
 @background: #EAEBEB;
@@ -167,7 +160,9 @@ h1 {
   }
 }
 .card-body {
-  position: relative;
+  flex: 1 !important;
+  justify-content: flex-end !important;
+  // position: relative;
   font-size: 20px;
   font-weight: 100;
   display: inline-block;
@@ -177,6 +172,7 @@ h1 {
   }
   &-horz {
     width: inherit;
+    margin-left: 10px;
     & p {
       font-size: 20px;
       font-weight: 100;
@@ -188,6 +184,11 @@ h1 {
   font-size: 1.9vh;
 }
 .card-tail{
+  font-size: 20px;
+  font-weight: 100;
+  color: @highlight;
+  text-align: center;
+  justify-content: center;
   vertical-align: middle;
   height: inherit;
   margin-right: -10px !important;
@@ -198,6 +199,11 @@ h1 {
   color: #47DDDA !important;
   letter-spacing: 0px;
 }
+
+table {
+  display: inline;
+}
+
 .glyphicon {
     font-size: 25px;
 }

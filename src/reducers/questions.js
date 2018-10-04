@@ -35,9 +35,6 @@ export default function questions (state = {}, action) {
         }
       }
 
-    /*
-
-     */
     case STORE_QUESTIONS :
       return {
         ...state,

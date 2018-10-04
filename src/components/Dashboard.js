@@ -17,34 +17,23 @@ Pass these lists to QuestionCol component.
 */
 
 class Dashboard extends Component {
-  state = {
-    showAnswered: false,
-  }
-
-  handleAnsweredToggle = (e) => {
-    e.preventDefault()
-    this.setState((prevState) => ({
-      showAnswered: !prevState.showAnswered
-    }))
-  }
 
   render () {
     const { answeredSortedIds, unansweredSortedIds } = this.props;
-    const { showAnswered } = this.state;
 
     return (
       <Grid>
         <Row className="justify-content-center">
           <Col xs={12} md={8} mdOffset={2}>
-            <Tabs defaultActiveKey={1}>
-              <Tab eventKey={1} title="Answered">
-                <div>
-                  <QuestionContainer questions={answeredSortedIds}/>
-                </div>
-              </Tab>
+            <Tabs id={''} defaultActiveKey={2}>
               <Tab eventKey={2} title="Unanswered">
                 <div>
                   <QuestionContainer questions={unansweredSortedIds}/>
+                </div>
+              </Tab>
+              <Tab eventKey={1} title="Answered">
+                <div>
+                  <QuestionContainer questions={answeredSortedIds}/>
                 </div>
               </Tab>
             </Tabs>
@@ -63,7 +52,7 @@ function mapStateToProps ({ questions, users, authedUser }) {
 
   // Unanswered questions, timestamp sorted
   const questionIDs = Object.keys(questions)
-  const unanswered = questionIDs.filter((id) => -1 == answered.indexOf(id))
+  const unanswered = questionIDs.filter((id) => -1 === answered.indexOf(id))
   const unansweredSortedIds = unanswered.sort((a,b) => questions[b].timestamp - questions[a].timestamp)
   console.log('Dashboard');
   return {

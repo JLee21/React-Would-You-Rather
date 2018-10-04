@@ -1,22 +1,15 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
-import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
-// import CenteredGrid from './Grid'
-// import GuttersGrid from './Spacing'
-// import GridBreakPoints from './GridBreakPoints'
+import { Grid } from 'react-bootstrap'
 import { handleInitialData } from '../actions/shared';
-import Divider from '@material-ui/core/Divider';
 import CenteredTabs from './Tab';
 import NewQuestion from './NewQuestion';
 import Dashboard from './Dashboard';
 import Leaderboard from './Leaderboard';
 import Login from './Login';
-import QuestionContainer from './QuestionContainer'
 import QCPoll from './QCPoll'
 import NoMatch from './NoMatch'
-import { Grid } from 'react-bootstrap'
 
 
 class App extends Component {
