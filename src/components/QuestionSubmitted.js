@@ -11,9 +11,10 @@ import { Grid, Row, Col, ProgressBar } from 'react-bootstrap';
  */
 
 class QuestionSubmitted extends Component {
+  
   render () {
     const { usersAnswer, askedBy, avatarURL, question, votes } = this.props
-    console.log(votes.optionOne/votes.total * 100);
+
     return (
       <Grid>
         <Row>
@@ -28,7 +29,7 @@ class QuestionSubmitted extends Component {
               <p>Would your rather {question.optionOne.text}?</p>
               {usersAnswer === 'optionOne' &&
                 <span>
-                  <div class="your-vote" aria-hidden="true">
+                  <div className="your-vote" aria-hidden="true">
                     Your Vote!
                   </div>
                 </span>
@@ -37,7 +38,7 @@ class QuestionSubmitted extends Component {
               <p>Would your rather {question.optionTwo.text}?</p>
               {usersAnswer === 'optionTwo' &&
                 <span>
-                  <div class="your-vote" aria-hidden="true">
+                  <div className="your-vote" aria-hidden="true">
                     Your Vote!
                   </div>
                 </span>

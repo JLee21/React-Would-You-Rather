@@ -77,7 +77,7 @@ class NewQuestion extends Component {
                     <Panel>
                       <Panel.Heading>Would you rather ...</Panel.Heading>
                       <Panel.Body>
-                        <FormGroup controlId="formControlsTextarea">
+                        <FormGroup>
                           <FormControl
                             id='optionOne'
                             componentClass="textarea"
@@ -92,7 +92,7 @@ class NewQuestion extends Component {
                     <Panel>
                       <Panel.Heading>or ...</Panel.Heading>
                       <Panel.Body>
-                      <FormGroup controlId="formControlsTextarea">
+                      <FormGroup>
                         <FormControl
                           componentClass="textarea"
                           id='optionTwo'

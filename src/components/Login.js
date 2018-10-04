@@ -15,21 +15,18 @@ class Login extends Component {
   }
   handleUserSignIn = (e) => {
     const userSelect = e.target.value
-    // this.setState({toHome: true})
-    this.props.history.push('/')
+    if (this.props.pathname === '/login') {
+      this.props.history.push('/')
+    }
     this.props.dispatch(setAuthedUser(userSelect))
   }
   signOff = () => {
+    this.props.history.push('/')
     this.props.dispatch(setAuthedUser(null))
   }
   render () {
-    const { users, authedUser } = this.props;
+    const { users, authedUser, pathname } = this.props;
     const { toHome } = this.state;
-
-    console.log(toHome);
-    if (toHome === true) {
-      return <Redirect exact to='/'/>
-    }
 
     return (
       <Grid>
@@ -62,7 +59,6 @@ class Login extends Component {
               SIGN OFF
             </Button>
           }
-
           </Col>
         </Row>
       </Grid>
@@ -70,11 +66,14 @@ class Login extends Component {
   }
 }
 
-function mapStateToProps ({ users, authedUser }) {
+function mapStateToProps ({ users, authedUser }, props) {
+
+  const { pathname } = props.location
 
   return {
     users,
-    authedUser
+    authedUser,
+    pathname
   }
 }
 
