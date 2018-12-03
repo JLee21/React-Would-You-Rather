@@ -1,7 +1,8 @@
 # Would You Rather Project
 
+![](./imgs/site-example-0.png)
+
 ![](./imgs/site-example-1.png)
-![](./imgs/site-example-2.png)
 
 ### Getting Started
 
